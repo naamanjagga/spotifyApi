@@ -1,0 +1,47 @@
+  // $url = 'https://accounts.spotify.com';
+                // $param = [
+                //     "query" => [
+                //         "client_id"     => $client_id,
+                //         "response_type" => "code",
+                //         "redirect_uri"  => "http://localhost:8080/login/getAccessCode",
+                //         "state"         => "success",
+                //         "show_dialog"   => "true",
+                //         "scpoe"         => "playlist-modify-public playlist-read-private playlist-modify-private"
+                //     ]
+                // ];
+                // $authpath = "$url/authorize?" . http_build_query($param["query"]);
+                // // echo $authpath; die;
+                // $this->cookies->set("login-action", base64_encode($email), time() + 15 * 86400);
+                // $this->response->redirect($authpath);
+                // $id = $user->user_id;
+
+// code for spotify page
+
+// $headers  = [
+        //     'Authorization: Basic ' . base64_encode($client_id . ':' . $client_secret),
+
+        // ];
+        // $url = "https://accounts.spotify.com/api/token";
+
+        // $curl = curl_init();
+        // curl_setopt($curl,CURLOPT_URL,$url);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($curl, CURLOPT_POST, 1);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query( $param ));
+        // curl_setopt($curl, CURLOPT_HEADER, array( 'Authorization: Basic ' . base64_encode($client_id . ':' . $client_secret)));
+        // // echo 'naman'; die;
+        // $json = json_decode(curl_exec($curl));
+        // print_r($json); die;
+        // $naman = $json->access_token;
+        // print_r($naman);
+        // die;
+
+
+
+
+
+BQCDz7-UYmiAG9cNC2QXA_9tKKBKpncR8Zi1pWtxFMclakwf0VQAypgvSK1jVZVvdn_XQ3Obx9QaKng_XmFN4UC72N6UaS8umkQ4DBVXg3nJJoe6fD-CybByJPbHENFdXfJAA_8ef7KvACvo5vRCNFxCMKK5z_u8fr4r8CH7DgbCJtkKH-AAMCZ5vuIjWUDHs8gEFhf-WSClWt8cNBuNH6ANooLh-X9RjH1lQkOpBPgm-w
+
+
+
+BQDjjTn4r6btpa1WZ9ldHgbih91QeyrD3nMCWr4IegCnWGiWQcYf5X2GVgNdb0CoONr1eeAAtVhNggc9Dg0R5-TcQqrElB86hBHukU2RdA7CLrKfHuQ1g3lGcUZYt4GxiYc-_NS6Z_4qXKvqNLCNvEV1V1Bm_d37o63FQHNvbXTlx2qgw5roQvMFukDQxaUjXeOLdeHNE9vsTAfElWbPIjPMVamfGclQGgakQVQAJWgnfg

@@ -1,0 +1,247 @@
+<div class="container">
+
+  <div>
+    <div>
+      <div class="row">
+        <div class="col-md-4">
+          <h1>SPOTIFY :)</h1>
+          <h6>Heel in Pain With Music :)</h6>
+        </div>
+        <div class="col-md-4">
+        <div class="text-center  text-white">
+        <table class="bg-dark">
+          <thead>
+          </thead>
+          <tbody>
+            <tr class="border p-3 ">
+              <td>NAME :</td>
+              <td><?php echo $response['display_name'] ?></td>
+            </tr>
+            <tr class="border p-3">
+              <td>FOLLOWERS :</td>
+              <td><?php echo $response['followers']['total'] ?></td>
+            </tr>
+            <tr class="border p-3">
+              <td>USER ID :</td>
+              <td><?php echo $response['id'] ?></td>
+            </tr>
+            <tr class="border p-3">
+              <td>TYPE :</td>
+              <td><?php echo $response['type'] ?></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        </div>
+        <div class="col-md-4">
+        <form action="login/logout" method="POST">
+        <button class="btn btn-danger mt-2 mb-2 px-4" type="submit" name="logout">Log out</button>
+      </form>
+        </div>
+      </div>
+      <form action="index/create" method="POST">
+        <input type="text" class=" mt-2 p-1" style="width:60%;" name="createPlaylist" placeholder="Create playlist">
+        <button class="btn btn-primary" type="submit" name="create">Create playlist</button>
+      </form>
+      <form action="index/seeplaylist" method="POST">
+        <button class="btn btn-primary mt-2 mb-2" type="submit" name="getItems">See playlist</button>
+      </form>
+      <form action="" method="POST">
+        <button class="btn btn-primary mt-2 mb-2 px-4" type="submit" name="refresh">refresh</button>
+      </form>
+    </div>
+    <form action="" method="POST">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search" placeholder="Search Song , Artist , Album">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit" name="btn">OK</button>
+          <button class="btn btn-danger" type="submit" name="cancel">Cancel</button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="checkbox" class="mx-3" name="Artist">Artist
+        <input type="checkbox" class="mx-3" name="Album">Album
+        <input type="checkbox" class="mx-3" name="Playlist">Playlist
+        <input type="checkbox" class="mx-3" name="Track">Track
+        <input type="checkbox" class="mx-3" name="Show">Show
+        <input type="checkbox" class="mx-3" name="Episode">Episode
+        <div class="input-group-append">
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+
+
+
+  <html>
+
+  <head>
+    <title>Newsfeed</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-y: scroll;
+      }
+
+      body {
+        background-color: transparent;
+        background: url('https://i.imgur.com/ApQKtQZ.jpeg') fixed no-repeat;
+        background-size: cover;
+        max-height: 300rem;
+        border: 15px solid transparent !important;
+        -o-border-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.75) 0%, rgba(245, 245, 245, 0.75) 0%, rgba(245, 245, 245, 0.75) 16.6%, rgb(245, 245, 245) 37.8%, rgb(245, 245, 245) 48.8%, rgb(254, 254, 254) 53.1%, rgba(245, 245, 245, 0.75) 79.4%, rgba(245, 245, 245, 0.75) 84.3%) !important;
+        border-image: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.75)), color-stop(0%, rgba(245, 245, 245, 0.75)), color-stop(16.6%, rgba(245, 245, 245, 0.75)), color-stop(37.8%, rgb(245, 245, 245)), color-stop(48.8%, rgb(245, 245, 245)), color-stop(53.1%, rgb(254, 254, 254)), color-stop(79.4%, rgba(245, 245, 245, 0.75)), color-stop(84.3%, rgba(245, 245, 245, 0.75))) !important;
+        border-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.75) 0%, rgba(245, 245, 245, 0.75) 0%, rgba(245, 245, 245, 0.75) 16.6%, rgb(245, 245, 245) 37.8%, rgb(245, 245, 245) 48.8%, rgb(254, 254, 254) 53.1%, rgba(245, 245, 245, 0.75) 79.4%, rgba(245, 245, 245, 0.75) 84.3%) !important;
+        border-image-slice: 1 !important;
+      }
+
+      .pixel-grid {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: 15;
+        opacity: .2;
+        display: none;
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="…">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <?php
+    echo '<div>';
+    if ($recommendations != null) {
+      echo '<h3>Recommendations : </h3>';
+
+      echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+      foreach ($recommendations as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="' . $v['album']['images'][0]['url'] . '" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['name'] . '</h5>
+    <p class="card-text">by: ' . $v['album']['artists'][0]['name'] . ' </p>
+    <form action="index/addToPlaylist" method="POST">
+    <button type="submit" value="' . $v['uri'] . '" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+      }
+    } else {
+
+    }
+    echo '</div>';
+    echo '<div>';
+if ($trackon == 'on') {
+    echo '<h1>Tracks</h1>';
+
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($tracks as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="' . $v['album']['images'][$k]['url'] . '" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['album']['name'] . '</h5>
+    <p class="card-text">by: ' . $v['album']['artists'][0]['name'] . ' </p>
+    <form action="addToPlaylist" method="POST">
+    <button type="submit" value="'.$v['uri'].'" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} else {
+
+}
+echo '</div></div></div>';
+echo '<div>';
+if ($artistCheckbox == 'on') {
+    echo '<h1>Artist</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($artist as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="' . $v[1] . '" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <p class="card-text">by: ' . $v[0] . ' </p>
+    <form>
+    <button type="submit" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+
+';
+    }
+} 
+echo '</div></div></div>';
+echo '<div>';
+if ($albumCheckbox == 'on') {
+    echo '<h1>Album</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($album as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v[0] . '</h5>
+    <p class="card-text">by: ' . $v[1] . ' </p>
+    <form>
+    <button type="submit" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} 
+echo '</div></div></div>';
+echo '<div>';
+if ($playlistCheckbox == 'on') {
+    echo '<h1>Album</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($playlist as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['name'] . '</h5>
+    <form action="getItems" method="POST">
+    <button type="submit" value="' . $v['id'] . '" name="viewPlaylist" >View Playlist</button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} 
+echo '</div></div></div>';
+    ?>
+
+  </body>
+
+  </html>

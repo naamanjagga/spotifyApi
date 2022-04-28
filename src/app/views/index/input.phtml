@@ -1,0 +1,97 @@
+
+<?php
+echo '<div>';
+if ($tracks != null) {
+    echo '<h1>Tracks</h1>';
+
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($tracks as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="' . $v['album']['images'][$k]['url'] . '" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['album']['name'] . '</h5>
+    <p class="card-text">by: ' . $v['album']['artists'][0]['name'] . ' </p>
+    <form action="addToPlaylist" method="POST">
+    <button type="submit" value="'.$v['uri'].'" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} else {
+    echo 'no reesult found';
+}
+echo '</div></div></div>';
+echo '<div>';
+if ($artistCheckbox == 'on') {
+    echo '<h1>Artist</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($artist as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="' . $v[1] . '" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <p class="card-text">by: ' . $v[0] . ' </p>
+    <form>
+    <button type="submit" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+
+';
+    }
+} 
+echo '</div></div></div>';
+echo '<div>';
+if ($albumCheckbox == 'on') {
+    echo '<h1>Album</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($album as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v[0] . '</h5>
+    <p class="card-text">by: ' . $v[1] . ' </p>
+    <form>
+    <button type="submit" name="addToPlaylist" >Add to Playlist </button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} 
+echo '</div></div></div>';
+echo '<div>';
+if ($playlistCheckbox == 'on') {
+    echo '<h1>Album</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($playlist as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['name'] . '</h5>
+    <form action="getItems" method="POST">
+    <button type="submit" value="' . $v['id'] . '" name="viewPlaylist" >View Playlist</button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+} 
+echo '</div></div></div>';
+?>
+
+</body>
+
+</html>

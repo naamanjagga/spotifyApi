@@ -1,0 +1,14 @@
+Once logged-in send user to a page from where user can connect their Spotify account
+
+
+
+Implement refresh-token and get access-token as follows:
+Continue same api call which was going to happen in step 6.a
+
+
+
+
+
+
+afterwards :
+Try to implement "Player" API and control player inside spotify app.

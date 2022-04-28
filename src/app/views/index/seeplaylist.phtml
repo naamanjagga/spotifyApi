@@ -1,0 +1,21 @@
+<?php 
+echo '<div>';
+    echo '<h1>Album</h1>';
+    echo '<div class="container px-4 px-lg-5 mt-5" id="main">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">';
+    foreach ($playlist as $k => $v) {
+        echo '<div class="col mb-5" >
+    <div class="card" style="width: 15rem;">
+    <img class="card-img-top" src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="no image" width="70%" height="70%">
+    <div class="card-body">
+    <h5 class="card-title">' . $v['name'] . '</h5>
+    <form action="getItems" method="POST">
+    <button type="submit" value="' . $v['id'] . '" name="viewPlaylist" >View Playlist</button>
+    </form>
+   </div>
+  </div>
+</div>
+';
+    }
+echo '</div>';
+?>
